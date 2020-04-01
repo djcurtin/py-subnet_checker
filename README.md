@@ -24,7 +24,7 @@ $ python subnet.py 172.16.160.0/19
 Host IP:	172.16.160.0
 Subnet Mask:	255.255.224.0
 Upstream:	172.16.0.0
-Hosts:		32
+Hosts:		8192
 Subnets:	8
 
 Network IDs of each subnet:
