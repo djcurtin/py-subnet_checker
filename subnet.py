@@ -249,13 +249,13 @@ for s in range(subnets):
 #:
 ip_subnet = '.'.join([ str(i) for i in ip_subnet ])
 
-#: Total Number of Hosts created over all subnets created by the CIDR
+#: Host addresses per subnet using this CIDR
 #:
 ##: Total number of hosts (assuming CIDR of /1) is (2^8)^4
 ##: - 2^8 for 8 bits per byte in each IPv4 octet
 ##: - Then raised to the fourth power because of 4 octets
 ##:
-##: To calculate total hosts created by this CIDR, you take that value
+##: To calculate total hosts per subnet, you take that value
 ##: and divide by 2 as many times as you add a bit to the subnet mask, which
 ##: is the value of CIDR. This means divide by (2 ^ CIDR)
 ##:
