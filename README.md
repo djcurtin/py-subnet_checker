@@ -1,12 +1,11 @@
 # py-subnet_checker
 Python script which takes an IP and subnet in CIDR notation, calculates subnet values and validates supplied IP.
 
-Usage: subnet.py [ip/cidr] where ip is in ipv4 x.x.x.x format and cidr is between 1 and 31
-    
-The slash (/) must immediately follow the ip. NO SPACES IN THE NOTATION.
-IP must have four octets separated by periods (x.x.x.x)
+Usage: ```subnet.py [cidr]```
 
-example: 
+Where cidr consists of an IPv4 IP address (x.x.x.x) a slash (/) and a number between 1 and 31*
+
+examples: 
 ```
     subnet.py 172.16.160.0/19
     subnet.py 192.168.1.21/24
