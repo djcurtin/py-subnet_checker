@@ -242,8 +242,8 @@ bcs = []
 #: like we did with ip, subnet mask and upstream network id above
 #:
 for s in range(subnets):
-    sns.append( '.'.join( [str(i) for i in subnet_list[s]] ) )
-    bcs.append( '.'.join( [str(i) for i in broadcast_list[s]] ) )
+    sns.append( str(s) + ")\t" + '.'.join( [str(i) for i in subnet_list[s]] ) )
+    bcs.append( str(s) + ")\t" + '.'.join( [str(i) for i in broadcast_list[s]] ) )
 
 #: Also convert subnet ID for subnet to which supplied IP belongs
 #:
