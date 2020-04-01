@@ -108,7 +108,7 @@ subnet_mask = [ int(subnet_mask[i:i+8], 2) for i in [0, 8, 16, 24] ]
 ##:
 upstream_id = ip[0:host_octet-1] + [ 0 ] * ( 5 - host_octet )
 
-# Calculate number of networks and hosts created by subnet mask
+# Calculate number of networks and hosts created by subnet mask in the host bit portion
 #:
 ##: Number of subnets will be equal to 2^(cidr % 8). e.g., 2^(1 % 8) = 2, 2^(19 % 8) = 8
 ##: Maximum hosts per octet is 256. So to get host count, divide 256 by # of subnets
@@ -248,6 +248,20 @@ for s in range(subnets):
 #: Also convert subnet ID for subnet to which supplied IP belongs
 #:
 ip_subnet = '.'.join([ str(i) for i in ip_subnet ])
+
+#: Total Number of Hosts created over all subnets created by the CIDR
+#:
+##: Total number of hosts (assuming CIDR of /1) is (2^8)^4
+##: - 2^8 for 8 bits per byte in each IPv4 octet
+##: - Then raised to the fourth power because of 4 octets
+##:
+##: To calculate total hosts created by this CIDR, you take that value
+##: and divide by 2 as many times as you add a bit to the subnet mask, which
+##: is the value of CIDR. This means divide by (2 ^ CIDR)
+##:
+##: The bitwise shift (x >> y) is the same as x / (2 ^ y)
+##:
+hosts = ((2 ** 8) ** 4) >> cidr
 
 #: Sloppy way of making the output string, but it gets the job done, and made it
 ##: easy to build the output as I went along. Just plug in the values calculated,
