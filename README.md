@@ -3,7 +3,7 @@ Python script which takes an IP and subnet in CIDR notation, calculates subnet v
 
 Usage: ```subnet.py [cidr]```
 
-Where cidr consists of an IPv4 IP address (x.x.x.x) a slash (/) and a number between 1 and 31*
+Where cidr consists of an IPv4 IP address (x.x.x.x) a slash (/) and a number between 1 and 32*
 
 examples: 
 ```
@@ -11,42 +11,38 @@ examples:
     subnet.py 192.168.1.21/24
 ```
 
-**Note**:
-Although /32 is a valid CIDR, this script does not accept it as input because there's no calculation to be done.
-
 x.x.x.x/32 just means the IP address x.x.x.x itself
-The subnet mask is 255.255.255.255
 
 ## Sample Output
 ```
 $ python subnet.py 172.16.160.0/19
 
-Host IP:	172.16.160.0
+
+Calculating subnet values for:
+
+IP Address:	172.16.160.0
 Subnet Mask:	255.255.224.0
-Upstream:	172.16.0.0
-Hosts:		8192
-Subnets:	8
+Host Octet:	3
+Upstream ID:	172.16.0.0
 
-Network IDs of each subnet:
-0)	172.16.0.0
-1)	172.16.32.0
-2)	172.16.64.0
-3)	172.16.96.0
-4)	172.16.128.0
-5)	172.16.160.0
-6)	172.16.192.0
-7)	172.16.224.0
+IP in binary:	10101100.00010000.10100000.00000000
+Subnet binary:	11111111.11111111.11100000.00000000
 
-Broadcast IDs of each subnet:
-0)	172.16.31.255
-1)	172.16.63.255
-2)	172.16.95.255
-3)	172.16.127.255
-4)	172.16.159.255
-5)	172.16.191.255
-6)	172.16.223.255
-7)	172.16.255.255
+Total IPs:	8192
+Total Subnets:	8
+IPs Per Subnet:	1024
 
-IP Address 172.16.160.0 is an INVALID address on subnet 172.16.160.0.
-REASON: IP Address is Network ID.
+The following are the network IDs and broadcast IDs for each subnet:
+172.16.0.0	172.16.31.255
+172.16.32.0	172.16.63.255
+172.16.64.0	172.16.95.255
+172.16.96.0	172.16.127.255
+172.16.128.0	172.16.159.255
+172.16.160.0	172.16.191.255
+172.16.192.0	172.16.223.255
+172.16.224.0	172.16.255.255
+
+
+IP Address 172.16.160.0/19 is an INVALID IP on subnet id 172.16.160.0.
+REASON: IP Address is the network ID for the associated subnet.
 ```
