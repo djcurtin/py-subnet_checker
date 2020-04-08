@@ -116,20 +116,6 @@ subnet_bits = ("1" * cidr) + ("0" * (32 - cidr))
 subnet_mask = [ int(subnet_bits[i : i+8], 2) for i in range(0, 32, 8) ]
 
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-#: Calculate number of total ip addresses
-#:
-##: Total ip addresses available by particular CIDR. Quickest way to do this
-##: is to take total number of IP addresses available in IPv4 (2 ^ 32) and
-##: divide is by 2 ^ CIDR. Easiest way to do this is to subtract the powers,
-##: which gives us 2 ^ (32 - CIDR).
-##:
-##: Note: This is total IP addresses, not total host addresses per subnet.
-##:       Because each subnet needs one network id and one broadcast id, the
-##:       number of host IPs per subnet is total IPs minus 2.
-##:
-total_ip_addresses = 2 ** (32 - cidr)
-
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 #: Calculate number of subnets created
 #:
 ##: This is simple when you understand what CIDR and subnet mask are. For every
@@ -149,6 +135,20 @@ total_ip_addresses = 2 ** (32 - cidr)
 ##: we use mod (%) operator. Number of subnets, thus, is as follows:
 ##:
 subnets = 2 ** (cidr % 8)
+
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+#: Calculate number of ip per subnet
+#:
+##: Quickest way to do this is to take total number of IP addresses available
+##: in IPv4 (2 ^ 32) and divide is by 2 ^ CIDR. Easiest way to do this is to
+##: subtract the powers, which gives us 2 ^ (32 - CIDR).
+##:
+##: Note: This is total IP addresses, not total host addresses per subnet.
+##:       Because each subnet needs one network id and one broadcast id, the
+##:       number of host IPs per subnet is total IPs minus 2.
+##:
+ip_per_subnet = 2 ** (32 - cidr)
+total_ip_addresses = ip_per_subnet * subnets
 
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 #: Get upstream network ID
