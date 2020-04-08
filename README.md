@@ -28,9 +28,9 @@ Upstream ID:	172.16.0.0
 IP in binary:	10101100.00010000.10100000.00000000
 Subnet binary:	11111111.11111111.11100000.00000000
 
-Total IPs:	8192
+Total IPs:	65536
 Total Subnets:	8
-IPs Per Subnet:	1024
+IPs Per Subnet:	8192
 
 The following are the network IDs and broadcast IDs for each subnet:
 172.16.0.0	172.16.31.255
@@ -45,4 +45,5 @@ The following are the network IDs and broadcast IDs for each subnet:
 
 IP Address 172.16.160.0/19 is an INVALID IP on subnet id 172.16.160.0.
 REASON: IP Address is the network ID for the associated subnet.
+
 ```
